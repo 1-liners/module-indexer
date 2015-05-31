@@ -1,0 +1,56 @@
+{
+  "name": "module-indexer",
+  "version": "1.0.0",
+  "description": "creates a `index.js` for es6 modules",
+  "license": "MIT",
+  "repository": "1-liners/module-indexer",
+  "author": {
+    "name": "stoeffel",
+    "email": "schtoeffel@gmail.com",
+    "url": "schtoeffel.ch"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "bin": {
+    "module-indexer": "cli.js"
+  },
+  "scripts": {
+    "prepush": "npm test",
+    "develop": "nodangel --watch module --watch tests --exec 'npm --silent test'",
+    "istanbul": "istanbul cover ./node_modules/mocha/bin/_mocha  -- --report lcov --compilers js:babel/register --ui qunit ./tests",
+    "mocha": "mocha --compilers js:babel/register --ui qunit ./tests",
+    "compile": "cd ./module; babel --loose=all ./*.js --out-dir ../",
+    "clean": "rm *.js",
+    "coverage": "npm run compile; npm run istanbul; npm run clean",
+    "coveralls": "npm run compile && npm run istanbul  && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && npm run clean",
+    "test": "npm run coverage",
+    "prepublish": "npm test; npm run compile"
+  },
+  "files": [
+    "/*.js",
+    "/module/",
+    "/license",
+    "/readme.md"
+  ],
+  "keywords": [
+    "oneliners",
+    "shorthands",
+    "module-indexer"
+  ],
+  "dependencies": {
+    "1-liners": "^0.2.7",
+    "chickencurry": "^1.4.0",
+    "get-modules": "^1.0.2",
+    "meow": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel": "^5.1.10",
+    "coveralls": "^2.11.2",
+    "husky": "^0.7.0",
+    "istanbul": "^0.3.13",
+    "mocha": "^2.2.4",
+    "mocha-lcov-reporter": "0.0.2",
+    "nodangel": "1.3.8"
+  }
+}
