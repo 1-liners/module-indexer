@@ -3,6 +3,6 @@ npm-debug.log
 *.js
 !cli.js
 !module/*.js
-!tests/*.js
+!tests/**/*.js
 !utils/*.js
 coverage
