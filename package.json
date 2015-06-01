@@ -22,7 +22,7 @@
     "mocha": "mocha --compilers js:babel/register --ui qunit ./tests",
     "compile": "cd ./module; babel --loose=all ./*.js --out-dir ../",
     "clean": "rm *.js",
-    "coverage": "npm run compile; npm run istanbul; npm run clean",
+    "coverage": "npm run compile && npm run istanbul && npm run clean",
     "coveralls": "npm run compile && npm run istanbul  && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && npm run clean",
     "test": "npm run coverage",
     "prepublish": "npm test; npm run compile"
